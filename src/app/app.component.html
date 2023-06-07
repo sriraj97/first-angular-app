@@ -1,12 +1,23 @@
-<div id="header">
-  <h1> {{  title }}</h1>
+<div id="header" [ngStyle]="currentTheme" >
+  <h1 [ngClass]="currentHeaderClass.className"> {{  title }}</h1>
+  <div id="themes">
+      <ul>
+          <li *ngFor="let n of themes; let y=index" (click)="changeTheme(y)"> {{n}} </li>
+    <!-- <li *ngFor="let x of [0,1,2] (click)="changeTheme(x)>{{themes[x]}}</li>"-->  
+      </ul>
+  </div>
+  <div id="select-box" [(ngModel)]="currentHeaderClass">
+      <select>
+          <option *ngFor="let x of headerClasses" [value]="x">
+              {{x.displayName}}</option>
+      </select>
+  </div>
 </div>
-
 
 <div id="content-area">
+  <app-box *ngFor="let x of services" ></app-box>
+ <!--  <app-box></app-box>
    <app-box></app-box>
-   <app-box></app-box>
-   <app-box></app-box>
+   <app-box></app-box> -->
 </div>
-
-<app-footer></app-footer>
+<app-footer ></app-footer>
