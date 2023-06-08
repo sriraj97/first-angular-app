@@ -1,4 +1,4 @@
-import { Component,Input ,OnInit} from '@angular/core';
+import { Component,EventEmitter,Input ,OnInit, Output} from '@angular/core';
 import { ThemeProps } from '../types';
 import { DataService } from '../services/data.service';
 
@@ -11,6 +11,7 @@ export class BoxComponent implements OnInit{
     @Input() boxtheme:ThemeProps={color:"",backgroundColor:""}
     @Input("title") boxtitle:string=""
     features:string[]=[]
+    @Output('featureClick') sendData:EventEmitter<string>=new EventEmitter<string>();
    constructor(private ds:DataService){
        // ds.getFeatures(this.boxtitle);
         // According to component life cycle input
@@ -24,6 +25,7 @@ export class BoxComponent implements OnInit{
   // that can be put in a function called ngOnInit which is part of the interface 
   // called OnInit
 
-
-
+   OnFeatureSelect(feature:any):void{
+    this.sendData.emit(feature+" from service "+this.boxtitle)
+   }
 }

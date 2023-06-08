@@ -11,17 +11,20 @@
   </div>
   <div id="select-box">
     <select [(ngModel)]="currentHeaderClass">
-          <option *ngFor="let x of headerClasses" [value]="x">
+          <option *ngFor="let x of headerClasses" [ngValue]="x">
               {{x.displayName}}</option>
       </select>
   </div>
 </div>
-
+<div id="message-area" [ngStyle]="currentTheme" [style.padding]="'30px'" [style.marginTop]="'15px'">
+  <h3 [style.textAlign]="'center'">{{message}}</h3>
+</div>
 <div id="content-area">
   <!-- <app-box *ngFor="let x of services" ></app-box> -->
   <!-- <app-box *ngFor="let x of services" [boxtheme]="currentTheme"></app-box> -->
   <app-box *ngFor="let x of services" [boxtheme]="currentTheme"
-    [title]="x" ></app-box>
+    [title]="x" 
+    (featureClick)="receiveFromChild($event)"></app-box>
  <!--  <app-box></app-box>
    <app-box></app-box>
    <app-box></app-box> -->

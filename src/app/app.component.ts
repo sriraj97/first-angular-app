@@ -27,7 +27,13 @@ export  class AppComponent {
 
   hfont: string ="#F1F6F8"
 
+  message:string="No messages Yet !!!"
+
   changeTheme(index:number):void {
     this.currentTheme = this.themeStyles[index]
+ }
+
+ receiveFromChild(feature:string){
+  this.message="User Selected feature =>"+feature
  }
 }
